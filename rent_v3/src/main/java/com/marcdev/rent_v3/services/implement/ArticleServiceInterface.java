@@ -7,11 +7,11 @@ import java.util.Optional;
 
 public interface ArticleServiceInterface {
 
-    public String createArticle(ArticleDto articleDto);
+    public String createArticle(ArticleDto articleDto, Long id);
 
     public String deleteArticle(Long id);
 
-    public String updateArticle(ArticleDto articleDto, Long id);
+    public String updateArticle(ArticleDto articleDto, Long id, Long userId);
 
     Optional<ArticleDto> searchArticle(String keyWord, double price);
 

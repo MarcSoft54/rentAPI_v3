@@ -42,19 +42,19 @@ public class User {
     Timestamp createAccountAt;
 
 
-    @OneToMany(mappedBy = "user", targetEntity = Comment.class)
+    @OneToMany(mappedBy = "user", targetEntity = Comment.class, fetch = FetchType.LAZY)
     Set<Comment> comment;
 
     @OneToMany(mappedBy = "user")  // manyToMany
     Set<Ranking> ranking;
 
-    @OneToMany(mappedBy = "user", targetEntity = Article.class)//article relationShip
+    @OneToMany(mappedBy = "user", targetEntity = Article.class, fetch = FetchType.LAZY)//article relationShip
     Set<Article> article;
 
-    @OneToMany(mappedBy = "user", targetEntity = Subscribe.class) //subscribes
+    @OneToMany(mappedBy = "user", targetEntity = Subscribe.class, fetch = FetchType.LAZY) //subscribes
     Set<Subscribe> subscribe;
 
-    @OneToMany(mappedBy = "user", targetEntity = Message.class)
+    @OneToMany(mappedBy = "user", targetEntity = Message.class, fetch = FetchType.LAZY)
     Set<Message> messages;
 
     public User(String userName, String surName, String email, String passWord, String sex, int phoneNumber, String country) {

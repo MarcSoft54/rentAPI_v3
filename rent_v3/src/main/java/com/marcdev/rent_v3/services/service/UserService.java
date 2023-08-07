@@ -2,6 +2,7 @@ package com.marcdev.rent_v3.services.service;
 
 import com.marcdev.rent_v3.model.*;
 import com.marcdev.rent_v3.modelDTO.UserDto;
+import com.marcdev.rent_v3.repository.CommentRepository;
 import com.marcdev.rent_v3.repository.UserRepository;
 import com.marcdev.rent_v3.services.implement.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class UserService implements UserServiceInterface {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private CommentRepository commentRepository;
+
     @Override
     public String createUser(UserDto userDto) {
         Optional<User> user = userRepository.findByEmail(userDto.getEmail());
@@ -26,22 +30,17 @@ public class UserService implements UserServiceInterface {
             var users = User.builder()
                     .userName(userDto.getUserName())
                     .surName(userDto.getSurName())
+                    .passWord(userDto.getPassWord())
                     .email(userDto.getEmail())
                     .phoneNumber(userDto.getPhoneNumber())
                     .country(userDto.getCountry())
                     .sex(userDto.getSex())
                     .role(Role.ADMIN)
                     .createAccountAt(Timestamp.valueOf(LocalDateTime.now()))
-                    .comment(new Comment().getUser().getComment())
-                    .article(new Article().getUser().getArticle())
-                    .ranking(new Ranking().getUser().getRanking())
-                    .messages(new Message().getUser().getMessages())
-                    .subscribe(new Subscribe().getUser().getSubscribe())
                     .build();
             userRepository.save(users);
             return "success";
         }
-
     }
 
     @Override

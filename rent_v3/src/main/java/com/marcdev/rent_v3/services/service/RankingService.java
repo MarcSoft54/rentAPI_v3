@@ -32,11 +32,15 @@ public class RankingService implements RankingServiceInterface {
             if(rankingDto.getLikes() == null){
                 var rank = Ranking.builder()
                         .dislike(rankingDto.getDislike())
+                        .user(userRepository.getReferenceById(id))
+                        .article(articleRepository.getReferenceById(id))
                         .build();
                 rankingRepository.save(rank);
             }else if (rankingDto.getDislike() == null){
                 var rank = Ranking.builder()
                         .likes(rankingDto.getLikes())
+                        .user(userRepository.getReferenceById(id))
+                        .article(articleRepository.getReferenceById(id))
                         .build();
                 rankingRepository.save(rank);
             }

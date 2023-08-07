@@ -55,6 +55,10 @@ public class Article {
 
     Timestamp lastModifyAt;
 
+    Long lastModifyBy;
+
+    Long createBy;
+
 
 
 

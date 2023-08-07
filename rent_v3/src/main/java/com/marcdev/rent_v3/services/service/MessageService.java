@@ -26,6 +26,8 @@ public class MessageService implements MessageServiceInterface {
         if (user.isPresent()){
             var message = Message.builder()
                     .content(messageDto.getContent())
+                    .createBy(user.get().getId())
+                    .user(user.get())
                     .createAt(Timestamp.valueOf(LocalDateTime.now()))
                     .build();
             messageRepository.save(message);

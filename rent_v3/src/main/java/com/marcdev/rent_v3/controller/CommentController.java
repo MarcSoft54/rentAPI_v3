@@ -25,9 +25,9 @@ public class CommentController {
     }
 
     @GetMapping("/getComment")
-    public ResponseEntity<Iterable<Comment>> getComment(){
+    public ResponseEntity<Iterable<Comment>> getComment(Long articleId){
         return ResponseEntity.ok(
-                commentService.getComment()
+                commentService.getComment(articleId)
         );
     }
 }

@@ -7,5 +7,5 @@ public interface CommentServiceInterface {
 
     public boolean createComment(CommentDto commentDto, Long id);
 
-    Iterable<Comment> getComment();
+    Iterable<Comment> getComment(Long id);
 }

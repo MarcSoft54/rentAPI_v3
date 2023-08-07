@@ -25,6 +25,7 @@ public class Subscribe {
     Long numberSubscribe;
 
 
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     User user;

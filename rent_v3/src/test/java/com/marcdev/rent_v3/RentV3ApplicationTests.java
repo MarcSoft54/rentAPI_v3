@@ -1,6 +1,6 @@
 package com.marcdev.rent_v3;
 
-import com.marcdev.rent_v3.services.service.UserService;
+import com.marcdev.rent_v3.services.service.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +16,16 @@ class RentV3ApplicationTests {
 	@Autowired
 	private MockMvc mockMvc;
 
+	@MockBean
+	RankingService rankingService;
+	@MockBean
+	ArticleService articleService;
+	@MockBean
+	SubscribeService subscribeService;
+	@MockBean
+	MessageService messageService;
+	@MockBean
+	CommentService commentService;
 
 	@MockBean
 	private UserService userService;

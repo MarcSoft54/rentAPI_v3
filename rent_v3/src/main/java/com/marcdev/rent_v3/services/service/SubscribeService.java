@@ -25,6 +25,7 @@ public class SubscribeService implements SubscribeServiceInterface {
             var sub = Subscribe.builder()
                     .createAt(Timestamp.valueOf(LocalDateTime.now()))
                     .numberSubscribe(b)
+                    .user(userRepository.getReferenceById(id))
                     .build();
             subscribeRepository.save(sub);
             return true;
