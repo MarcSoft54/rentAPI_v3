@@ -9,9 +9,11 @@ public interface UserServiceInterface {
 
    public String createUser(UserDto userDto);
 
-   public void deleteUser(UserDto userDto);
+   public String deleteUser(UserDto userDto);
 
    public String updateUser(UserDto userDto);
 
    Optional<User> seachUser(String email);
+
+   Iterable<User> getUser();
 }

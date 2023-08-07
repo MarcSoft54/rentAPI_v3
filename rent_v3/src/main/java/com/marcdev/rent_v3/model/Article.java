@@ -59,7 +59,7 @@ public class Article {
 
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     User user;
 
     @OneToMany(mappedBy = "article") // manyToMany
@@ -67,4 +67,7 @@ public class Article {
 
     @OneToMany(mappedBy = "article", targetEntity = Comment.class)
     Set<Comment> comments;
+
+    public Article(String typeArticle, String country, double priceArticle, String city, String mapUrl, String pictureUrl, String videoUrl, String description, int room, int shower, int parking, int kitchen, int livingRoom) {
+    }
 }

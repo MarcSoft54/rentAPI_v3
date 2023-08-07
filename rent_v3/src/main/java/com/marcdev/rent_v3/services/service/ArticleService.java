@@ -1,10 +1,10 @@
 package com.marcdev.rent_v3.services.service;
 
 import com.marcdev.rent_v3.model.Article;
-import com.marcdev.rent_v3.model.Comment;
 import com.marcdev.rent_v3.modelDTO.ArticleDto;
 import com.marcdev.rent_v3.repository.ArticleRepository;
 import com.marcdev.rent_v3.services.implement.ArticleServiceInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -13,10 +13,11 @@ import java.util.Optional;
 @Service
 public class ArticleService implements ArticleServiceInterface {
 
+    @Autowired
     ArticleRepository articleRepository;
 
     @Override
-    public void createArticle(ArticleDto articleDto) {
+    public String createArticle(ArticleDto articleDto) {
         var article = Article.builder()
                 .typeArticle(articleDto.getTypeArticle())
                 .country(articleDto.getCountry())
@@ -33,14 +34,15 @@ public class ArticleService implements ArticleServiceInterface {
                 .mapUrl(articleDto.getMapUrl())
                 .createAt(Timestamp.valueOf(LocalDateTime.now()))
                 .lastModifyAt(Timestamp.valueOf(LocalDateTime.now()))
-                .comments(new Comment().getArticle().getComments())
                 .build();
         articleRepository.save(article);
+        return "success";
     }
 
     @Override
-    public void deleteArticle(Long id) {
-        articleRepository.findById(id);
+    public String deleteArticle(Long id) {
+        articleRepository.findById(id).orElseThrow();
+        return "delete successfully";
     }
 
     @Override
@@ -62,7 +64,7 @@ public class ArticleService implements ArticleServiceInterface {
             articleRepository.save(article.get());
             return "article update successfully";
         }
-        return "not found";
+        return "Article not found";
     }
 
     @Override

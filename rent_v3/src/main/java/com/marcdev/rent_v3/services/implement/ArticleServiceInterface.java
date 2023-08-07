@@ -7,9 +7,9 @@ import java.util.Optional;
 
 public interface ArticleServiceInterface {
 
-    public void createArticle(ArticleDto articleDto);
+    public String createArticle(ArticleDto articleDto);
 
-    public void deleteArticle(Long id);
+    public String deleteArticle(Long id);
 
     public String updateArticle(ArticleDto articleDto, Long id);
 

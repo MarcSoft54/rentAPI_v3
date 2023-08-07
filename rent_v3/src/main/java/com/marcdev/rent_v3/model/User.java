@@ -56,4 +56,8 @@ public class User {
 
     @OneToMany(mappedBy = "user", targetEntity = Message.class)
     Set<Message> messages;
+
+    public User(String userName, String surName, String email, String passWord, String sex, int phoneNumber, String country) {
+
+    }
 }

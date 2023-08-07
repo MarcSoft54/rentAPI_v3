@@ -7,14 +7,19 @@ import com.marcdev.rent_v3.modelDTO.CommentDto;
 import com.marcdev.rent_v3.repository.CommentRepository;
 import com.marcdev.rent_v3.repository.UserRepository;
 import com.marcdev.rent_v3.services.implement.CommentServiceInterface;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+@Service
 public class CommentService implements CommentServiceInterface {
 
+    @Autowired
     CommentRepository commentRepository;
+    @Autowired
     UserRepository userRepository;
     @Override
     public boolean createComment(CommentDto commentDto, Long id) {
@@ -23,7 +28,6 @@ public class CommentService implements CommentServiceInterface {
             var comments = Comment.builder()
                     .content(commentDto.getContent())
                     .createAt(Timestamp.valueOf(LocalDateTime.now()))
-                    .article(new Article())
                     .build();
             commentRepository.save(comments);
             return true;

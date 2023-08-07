@@ -26,10 +26,14 @@ public class Comment {
     Timestamp createAt;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     User user;
 
     @ManyToOne
-    @JoinColumn(name = "article_id", nullable = false)
+    @JoinColumn(name = "article_id")
     Article article;
+
+    public Comment(String content) {
+
+    }
 }

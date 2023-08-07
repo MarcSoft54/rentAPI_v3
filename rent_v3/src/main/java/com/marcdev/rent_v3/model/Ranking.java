@@ -1,11 +1,17 @@
 package com.marcdev.rent_v3.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "ranking")
 @Table(schema = "rent")
 public class Ranking {
@@ -27,6 +33,9 @@ public class Ranking {
     @JoinColumn(name = "article_id")
     Article article;
 
+    public Ranking(Long likes, Long dislike) {
+
+    }
 }
 
 @Embeddable

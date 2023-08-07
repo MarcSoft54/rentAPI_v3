@@ -4,6 +4,7 @@ import com.marcdev.rent_v3.model.*;
 import com.marcdev.rent_v3.modelDTO.UserDto;
 import com.marcdev.rent_v3.repository.UserRepository;
 import com.marcdev.rent_v3.services.implement.UserServiceInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -13,13 +14,14 @@ import java.util.Optional;
 @Service
 public class UserService implements UserServiceInterface {
 
+    @Autowired
     private UserRepository userRepository;
 
     @Override
     public String createUser(UserDto userDto) {
         Optional<User> user = userRepository.findByEmail(userDto.getEmail());
         if(user.isPresent()){
-            return "not found";
+            return "isPresent";
         }else {
             var users = User.builder()
                     .userName(userDto.getUserName())
@@ -28,6 +30,7 @@ public class UserService implements UserServiceInterface {
                     .phoneNumber(userDto.getPhoneNumber())
                     .country(userDto.getCountry())
                     .sex(userDto.getSex())
+                    .role(Role.ADMIN)
                     .createAccountAt(Timestamp.valueOf(LocalDateTime.now()))
                     .comment(new Comment().getUser().getComment())
                     .article(new Article().getUser().getArticle())
@@ -42,8 +45,9 @@ public class UserService implements UserServiceInterface {
     }
 
     @Override
-    public void deleteUser(UserDto userDto) {
+    public String deleteUser(UserDto userDto) {
         userRepository.deleteAll();
+        return "delete successfully";
     }
 
     @Override
@@ -64,5 +68,10 @@ public class UserService implements UserServiceInterface {
     @Override
     public Optional<User> seachUser(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public Iterable<User> getUser() {
+        return userRepository.findAll();
     }
 }
