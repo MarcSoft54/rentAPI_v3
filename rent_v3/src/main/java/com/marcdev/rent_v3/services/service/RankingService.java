@@ -23,29 +23,22 @@ public class RankingService implements RankingServiceInterface {
     @Autowired
     RankingRepository rankingRepository;
 
+
+
     @Override
     public boolean createLikeAndDislike(Long id, RankingDto rankingDto) {
         Optional<User> user = userRepository.findById(id);
         Optional<Article> article = articleRepository.findById(id);
-
         if(user.isPresent() && article.isPresent()){
-            if(rankingDto.getLikes() == null){
                 var rank = Ranking.builder()
                         .dislike(rankingDto.getDislike())
-                        .user(userRepository.getReferenceById(id))
-                        .article(articleRepository.getReferenceById(id))
-                        .build();
-                rankingRepository.save(rank);
-            }else if (rankingDto.getDislike() == null){
-                var rank = Ranking.builder()
                         .likes(rankingDto.getLikes())
                         .user(userRepository.getReferenceById(id))
                         .article(articleRepository.getReferenceById(id))
                         .build();
                 rankingRepository.save(rank);
-            }
             return  true;
-        }
+            }
         return false;
     }
 
@@ -58,25 +51,17 @@ public class RankingService implements RankingServiceInterface {
             rankingRepository.deleteById(id);
             return "success";
         }
-        return "fail";
+        return "false";
 
     }
 
     @Override
-    public Long getLike(Long id) {
+    public Optional<RankingDto> getRanking(Long id) {
         var article = articleRepository.findById(id);
         if (article.isPresent()){
-            return rankingRepository.count();
+            return rankingRepository.findByLikes(id);
         }
-        return null;
+        return Optional.empty();
     }
 
-    @Override
-    public  Long getDislike(Long id) {
-        var article = articleRepository.findById(id);
-        if (article.isPresent()){
-            return rankingRepository.count();
-        }
-        return null;
-    }
 }

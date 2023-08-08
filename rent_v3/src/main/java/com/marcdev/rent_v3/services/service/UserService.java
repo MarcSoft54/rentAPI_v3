@@ -2,6 +2,7 @@ package com.marcdev.rent_v3.services.service;
 
 import com.marcdev.rent_v3.model.*;
 import com.marcdev.rent_v3.modelDTO.UserDto;
+import com.marcdev.rent_v3.repository.ArticleRepository;
 import com.marcdev.rent_v3.repository.CommentRepository;
 import com.marcdev.rent_v3.repository.UserRepository;
 import com.marcdev.rent_v3.services.implement.UserServiceInterface;
@@ -17,6 +18,9 @@ public class UserService implements UserServiceInterface {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    ArticleRepository articleRepository;
 
     @Autowired
     private CommentRepository commentRepository;
@@ -45,8 +49,13 @@ public class UserService implements UserServiceInterface {
 
     @Override
     public String deleteUser(UserDto userDto) {
-        userRepository.deleteAll();
-        return "delete successfully";
+        Optional<User> user = userRepository.findByEmail(userDto.getEmail());
+        if (user.isPresent()){
+            userRepository.deleteById(user.get().getId());
+            articleRepository.deleteByUserId(user.get().getId());
+            return "delete successfully";
+        }
+       return "user not find";
     }
 
     @Override

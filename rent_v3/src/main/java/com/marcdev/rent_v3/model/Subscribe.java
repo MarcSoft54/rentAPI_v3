@@ -1,5 +1,6 @@
 package com.marcdev.rent_v3.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,6 +29,13 @@ public class Subscribe {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties(
+            value = {
+                    "userName", "surName","email",
+                    "passWord", "sex", "phoneNumber", "country",
+                    "role", "createAccountAt", "comment", "ranking", "subscribe"
+            }, allowSetters = true
+    )
     User user;
 
     public Subscribe(Long numberSubscribe) {

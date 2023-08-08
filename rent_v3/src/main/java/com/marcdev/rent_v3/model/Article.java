@@ -1,5 +1,6 @@
 package com.marcdev.rent_v3.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -64,9 +65,16 @@ public class Article {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties(
+            value = {
+                    "userName", "surName","email",
+                    "passWord", "sex", "phoneNumber", "country",
+                    "role", "createAccountAt", "comment", "ranking", "subscribe"
+            }, allowSetters = true
+    )
     User user;
 
-    @OneToMany(mappedBy = "article") // manyToMany
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL) // manyToMany
     Set<Ranking> ranking;
 
     @OneToMany(mappedBy = "article", targetEntity = Comment.class)

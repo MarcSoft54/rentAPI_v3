@@ -7,8 +7,7 @@ public class MessageMapper {
 
     public MessageDto toDto(Message message){
         return new MessageDto(
-                message.getContent(),
-                message.getCreateAt()
+                message.getContent()
         );
     }
 

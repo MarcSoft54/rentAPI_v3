@@ -19,12 +19,12 @@ public class SubscribeService implements SubscribeServiceInterface {
     @Autowired
     UserRepository userRepository;
     @Override
-    public boolean createSubscribe(Long id, Long b) {
+    public boolean createSubscribe(Long id, Long amountSub) {
         Optional<User> user = userRepository.findById(id);
         if(user.isPresent()){
             var sub = Subscribe.builder()
                     .createAt(Timestamp.valueOf(LocalDateTime.now()))
-                    .numberSubscribe(b)
+                    .numberSubscribe(amountSub)
                     .user(userRepository.getReferenceById(id))
                     .build();
             subscribeRepository.save(sub);

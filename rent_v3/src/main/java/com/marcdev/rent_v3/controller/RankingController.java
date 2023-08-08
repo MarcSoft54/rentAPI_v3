@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api")
 public class RankingController {
@@ -25,18 +27,13 @@ public class RankingController {
         );
     }
 
-    @GetMapping("/getLike")
-    public ResponseEntity<Long> getLikes(Long id){
+    @GetMapping("/getRanking")
+    public ResponseEntity<Optional<RankingDto>> getLikes(Long id){
         return ResponseEntity.ok(
-                rankingService.getLike(id)
+                rankingService.getRanking(id)
         );
     }
-    @GetMapping("/getDislike")
-    public ResponseEntity<Long> getDislike(Long id){
-        return ResponseEntity.ok(
-                rankingService.getDislike(id)
-        );
-    }
+
 
 
 }

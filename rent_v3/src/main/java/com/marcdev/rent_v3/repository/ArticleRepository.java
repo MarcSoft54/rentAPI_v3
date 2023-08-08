@@ -12,4 +12,6 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     Optional<ArticleDto> findByTypeArticleContains(String keyWord);
 
     Optional<ArticleDto> findByPriceArticleGreaterThan(double price);
+
+    void deleteByUserId(Long id);
 }

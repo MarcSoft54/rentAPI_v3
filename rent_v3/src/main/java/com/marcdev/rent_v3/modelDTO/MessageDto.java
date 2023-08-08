@@ -11,5 +11,4 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class MessageDto {
     String content;
-    Timestamp createAt;
 }
