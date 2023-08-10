@@ -10,45 +10,47 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/articles")
 public class ArticleController {
 
     @Autowired
     ArticleService articleService;
 
 
-    @PostMapping("/setArticle")
-    public ResponseEntity<String> createArticles(@RequestParam(name = "articleDto") ArticleDto articleDto,@RequestParam(name = "id") Long id){
+    @PostMapping("/{id}")
+    public ResponseEntity<String> createArticles(@RequestParam(name = "articleDto") ArticleDto articleDto,
+                                                 @PathVariable(name = "id") Long id)
+    {
         return ResponseEntity.ok(
-                articleService.createArticle(articleDto, id)
+                articleService.createArticle(articleDto,(Long) id)
         );
     }
 
-    @DeleteMapping("/delArticle")
-    public ResponseEntity<String> delArticle(@RequestParam(name = "articleId") Long articleId){
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> delArticle(@PathVariable(name = "id") Long articleId){
         return ResponseEntity.ok(
                 articleService.deleteArticle(articleId)
         );
     }
 
-    @PutMapping("/updateArticle")
+    @PutMapping("/update/{id}/{userId}")
     public ResponseEntity<String> updateArticle(@RequestParam(name = "articleDto") ArticleDto articleDto,
-                                                @RequestParam(name = "articleId") Long id,
-                                                @RequestParam(name = "userId") Long userId){
+                                                @PathVariable(name = "articleId") Long id,
+                                                @PathVariable(name = "userId") Long userId){
         return ResponseEntity.ok(
                 articleService.updateArticle(articleDto, id, userId)
         );
     }
 
-    @GetMapping("/searchArticle")
-    public ResponseEntity<Optional<ArticleDto>> searchArticleBy(@RequestParam(name = "keyWord", required = false) String kw,
-                                                              @RequestParam(value = "price", required = false) double price){
+    @GetMapping("/search/{kw}/{price}")
+    public ResponseEntity<Optional<ArticleDto>> searchArticleBy(@PathVariable(name = "kw", required = false) String kw,
+                                                              @PathVariable(value = "price", required = false) double price){
         return ResponseEntity.ok(
                 articleService.searchArticle(kw, price)
         );
     }
 
-    @GetMapping("/getAllArticle")
+    @GetMapping("/")
     public ResponseEntity<Iterable<Article>> getArticles(){
         return ResponseEntity.ok(
                 articleService.getArticle()

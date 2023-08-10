@@ -43,19 +43,18 @@ public class UserService implements UserServiceInterface {
                     .createAccountAt(Timestamp.valueOf(LocalDateTime.now()))
                     .build();
             userRepository.save(users);
-            return "success";
+            return "ok";
         }
     }
 
     @Override
-    public String deleteUser(UserDto userDto) {
-        Optional<User> user = userRepository.findByEmail(userDto.getEmail());
+    public String deleteUser(Long id) {
+        Optional<User> user = userRepository.findById(id);
         if (user.isPresent()){
             userRepository.deleteById(user.get().getId());
-            articleRepository.deleteByUserId(user.get().getId());
-            return "delete successfully";
+            return "ok";
         }
-       return "user not find";
+       return "not found";
     }
 
     @Override
@@ -68,14 +67,14 @@ public class UserService implements UserServiceInterface {
             user.get().setPassWord(userDto.getPassWord());
             user.get().setEmail(userDto.getEmail());
             userRepository.save(user.get());
-            return "update successfully";
+            return "ok";
         }
-        return "user not found";
+        return "not found";
     }
 
     @Override
-    public Optional<User> seachUser(String email) {
-        return userRepository.findByEmail(email);
+    public Optional<Iterable<User>> seachUser(String name) {
+        return userRepository.findByUserNameContains(name);
     }
 
     @Override

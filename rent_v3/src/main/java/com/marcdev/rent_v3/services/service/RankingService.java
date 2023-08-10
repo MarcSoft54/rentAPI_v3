@@ -11,6 +11,7 @@ import com.marcdev.rent_v3.services.implement.RankingServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,7 +25,6 @@ public class RankingService implements RankingServiceInterface {
     RankingRepository rankingRepository;
 
 
-
     @Override
     public boolean createLikeAndDislike(Long id, RankingDto rankingDto) {
         Optional<User> user = userRepository.findById(id);
@@ -33,6 +33,7 @@ public class RankingService implements RankingServiceInterface {
                 var rank = Ranking.builder()
                         .dislike(rankingDto.getDislike())
                         .likes(rankingDto.getLikes())
+                        .id(new Ranking.UserArticleKey(user.get().getId(), article.get().getId()) )
                         .user(userRepository.getReferenceById(id))
                         .article(articleRepository.getReferenceById(id))
                         .build();
@@ -46,22 +47,20 @@ public class RankingService implements RankingServiceInterface {
     public String deleteLikeAndDislike(Long id) {
         var user = userRepository.findById(id);
         var article = articleRepository.findById(id);
-
         if (user.isPresent() && article.isPresent()){
             rankingRepository.deleteById(id);
             return "success";
         }
         return "false";
-
     }
 
     @Override
-    public Optional<RankingDto> getRanking(Long id) {
+    public List<Ranking> getRanking(Long id) {
         var article = articleRepository.findById(id);
         if (article.isPresent()){
-            return rankingRepository.findByLikes(id);
+            return rankingRepository.findAll();
         }
-        return Optional.empty();
+        return null;
     }
 
 }

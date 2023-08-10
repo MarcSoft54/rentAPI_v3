@@ -16,6 +16,11 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(schema = "rent")
+@JsonIgnoreProperties(
+        value = {
+                "user", "ranking", "comments"
+        }
+)
 public class Article {
 
     @Id
@@ -39,47 +44,43 @@ public class Article {
 
     @Column(nullable = false, columnDefinition = "TEXT")
     String description;
-
 //    Long parent;
-
     int room;
-
     int shower;
-
     int parking;
-
     int kitchen;
-
     int livingRoom;
-
     Timestamp createAt;
-
     Timestamp lastModifyAt;
-
     Long lastModifyBy;
 
     Long createBy;
 
 
-
-
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties(
-            value = {
-                    "userName", "surName","email",
-                    "passWord", "sex", "phoneNumber", "country",
-                    "role", "createAccountAt", "comment", "ranking", "subscribe"
-            }, allowSetters = true
-    )
     User user;
 
-    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL) // manyToMany
+    @OneToMany(mappedBy = "article",
+            cascade = CascadeType.ALL
+    ) // manyToMany
     Set<Ranking> ranking;
 
     @OneToMany(mappedBy = "article", targetEntity = Comment.class)
     Set<Comment> comments;
 
-    public Article(String typeArticle, String country, double priceArticle, String city, String mapUrl, String pictureUrl, String videoUrl, String description, int room, int shower, int parking, int kitchen, int livingRoom) {
+    public Article(String typeArticle,
+                   String country,
+                   double priceArticle,
+                   String city,
+                   String mapUrl,
+                   String pictureUrl,
+                   String videoUrl,
+                   String description,
+                   int room,
+                   int shower,
+                   int parking,
+                   int kitchen,
+                   int livingRoom) {
     }
 }

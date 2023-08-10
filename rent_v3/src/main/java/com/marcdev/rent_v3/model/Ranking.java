@@ -15,6 +15,11 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Entity(name = "ranking")
 @Table(schema = "rent")
+@JsonIgnoreProperties(
+        value = {
+                "user", "article"
+        }
+)
 public class Ranking {
 
     @EmbeddedId
@@ -28,38 +33,30 @@ public class Ranking {
     @ManyToOne
     @MapsId("userId")
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties(
-            value = {
-                    "userName", "surName","email",
-                    "passWord", "sex", "phoneNumber", "country",
-                    "role", "createAccountAt", "comment", "ranking", "subscribe"
-            }, allowSetters = true
-    )
     User user;
 
     @ManyToOne
     @MapsId("articleId")
     @JoinColumn(name = "article_id")
-    @JsonIgnoreProperties(
-            value = {
-                    "typeArticle", "country", "priceArticle", "ciy",
-                    "mapUrl", "pictureUrl", "videoUrl", "description",
-                    "room", "shower", "parking", "kitchen", "livingRoom",
-                    "createAt", "lastModifyAt", "lastModifyBy", "createBy"
-            },allowSetters = true
-    )
     Article article;
 
     public Ranking(Long likes, Long dislike) {
 
     }
+
+    @Embeddable
+    @Data
+    @NoArgsConstructor
+    public static class UserArticleKey implements Serializable {
+        @Column(name = "user_id")
+        private Long userId;
+        @Column(name = "article_id")
+        private Long articleId;
+
+        public UserArticleKey(Long id, Long id1) {
+
+        }
+    }
 }
 
-@Embeddable
-@Data
-class UserArticleKey implements Serializable {
-    @Column(name = "user_id")
-    private Long userId;
-    @Column(name = "article_id")
-    private Long articleId;
-}
+

@@ -1,36 +1,38 @@
 package com.marcdev.rent_v3.controller;
 
+import com.marcdev.rent_v3.model.Ranking;
 import com.marcdev.rent_v3.modelDTO.RankingDto;
 import com.marcdev.rent_v3.services.service.RankingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/rankings")
 public class RankingController {
 
     @Autowired
     RankingService rankingService;
-    @PostMapping("/setLikeAndDislike")
-    public ResponseEntity<Boolean> createLikeAndDislike(Long id, RankingDto rankingDto){
+    @PostMapping("/{id}")
+    public ResponseEntity<Boolean> createLikeAndDislike(@PathVariable(name = "id") Long id,
+                                                        @RequestParam(name = "rankingDto") RankingDto rankingDto){
         return ResponseEntity.ok(
                 rankingService.createLikeAndDislike(id,rankingDto)
         );
     }
-    @DeleteMapping("/delLikeAndDislike")
-    public ResponseEntity<String> delLikeAndDislike(Long id){
+    @DeleteMapping("/del/{id}")
+    public ResponseEntity<String> delLikeAndDislike(@RequestParam(name = "id") Long id){
         return ResponseEntity.ok(
                 rankingService.deleteLikeAndDislike(id)
         );
     }
 
-    @GetMapping("/getRanking")
-    public ResponseEntity<Optional<RankingDto>> getLikes(Long id){
+    @GetMapping("/{id}")
+    public ResponseEntity<List<Ranking>> getLikes(@PathVariable(name = "id") int id){
         return ResponseEntity.ok(
-                rankingService.getRanking(id)
+                rankingService.getRanking((long) id)
         );
     }
 

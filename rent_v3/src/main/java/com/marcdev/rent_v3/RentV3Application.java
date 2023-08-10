@@ -72,7 +72,7 @@ public class RentV3Application implements CommandLineRunner {
 
 		RankingDto ranking = new RankingDto(
 				1L,
-				0L
+				1L
 		);
 
 		UserDto user = new UserDto(

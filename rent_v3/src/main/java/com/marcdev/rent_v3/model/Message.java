@@ -15,6 +15,11 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(schema = "rent")
+@JsonIgnoreProperties(
+        value = {
+                "user"
+        }
+)
 public class Message {
 
     @Id
@@ -27,13 +32,6 @@ public class Message {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties(
-            value = {
-                    "userName", "surName","email",
-                    "passWord", "sex", "phoneNumber", "country",
-                    "role", "createAccountAt", "comment", "ranking", "subscribe"
-            }, allowSetters = true
-    )
     User user;
 
     Long createBy;

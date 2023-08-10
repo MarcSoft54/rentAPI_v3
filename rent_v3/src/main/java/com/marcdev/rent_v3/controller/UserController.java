@@ -16,37 +16,38 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/setUser")
-    public ResponseEntity<String> createUser(UserDto userDto){
+    @PostMapping("/{userDto}")
+    public ResponseEntity<String> createUser(@RequestBody UserDto userDto){
         return ResponseEntity.ok(
                 userService.createUser(userDto)
         );
     }
 
-    @DeleteMapping("/delUser")
-    public ResponseEntity<String> delUser(UserDto userDto){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delUser(@PathVariable("id") Long id){
         return ResponseEntity.ok(
-                userService.deleteUser(userDto)
+                userService.deleteUser(id)
         );
     }
 
-    @PutMapping("/updateUser")
-    public ResponseEntity<String> updateUser(UserDto userDto){
+    @PutMapping("/{userDto}")
+    public ResponseEntity<String> updateUser(@RequestBody UserDto userDto){
         return ResponseEntity.ok(
                 userService.updateUser(userDto)
         );
     }
 
-    @GetMapping("/getUser")
+    @GetMapping("/")
     public ResponseEntity<Iterable<User>> getUsers(){
         return ResponseEntity.ok(
                 userService.getUser()
         );
     }
-    @GetMapping("/searchUser")
-    public ResponseEntity<Optional<User>> search(String email){
+
+    @GetMapping("/{name}")
+    public ResponseEntity<Optional<Iterable<User>>> search(@PathVariable(name = "name") String name){
         return ResponseEntity.ok(
-                userService.seachUser(email)
+                userService.seachUser(name)
         );
     }
 

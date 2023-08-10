@@ -6,26 +6,27 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/subscribers")
 public class SubscribeController {
 
     @Autowired
     SubscribeService subscribeService;
-    @PostMapping("/setSub")
-    public ResponseEntity<Boolean> createSub(Long id, Long b){
+    @PostMapping("/{id}/{b}")
+    public ResponseEntity<Boolean> createSub(@PathVariable(name = "id") Long id,
+                                             @PathVariable(name = "b") int b){
         return ResponseEntity.ok(
-                subscribeService.createSubscribe(id, b)
+                subscribeService.createSubscribe(id, (long) b)
         );
     }
 
-    @DeleteMapping("/detSub")
-    public ResponseEntity<String> delSub(Long id){
+    @DeleteMapping("/del/{id}")
+    public ResponseEntity<String> delSub(@PathVariable(name = "id") Long id){
         return ResponseEntity.ok(
                 subscribeService.deleteSubscribe(id)
         );
     }
 
-    @GetMapping("/getSub")
+    @GetMapping("/")
     public ResponseEntity<Long> getSub(){
         return ResponseEntity.ok(
                 subscribeService.getSub()

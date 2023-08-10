@@ -15,6 +15,11 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @Entity(name = "comment")
 @Table(schema = "rent")
+@JsonIgnoreProperties(
+        value = {
+                "user", "article"
+        }
+)
 public class Comment {
 
     @Id
@@ -28,25 +33,10 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties(
-            value = {
-                    "userName", "surName","email",
-                    "passWord", "sex", "phoneNumber", "country",
-                    "role", "createAccountAt", "comment", "ranking", "subscribe"
-            }, allowSetters = true
-    )
     User user;
 
     @ManyToOne
     @JoinColumn(name = "article_id")
-    @JsonIgnoreProperties(
-            value = {
-                    "typeArticle", "country", "priceArticle", "ciy",
-                    "mapUrl", "pictureUrl", "videoUrl", "description",
-                    "room", "shower", "parking", "kitchen", "livingRoom",
-                    "createAt", "lastModifyAt", "lastModifyBy", "createBy"
-            },allowSetters = true
-    )
     Article article;
 
     public Comment(String content) {
