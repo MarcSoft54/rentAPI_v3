@@ -14,11 +14,11 @@ public class CommentController {
     @Autowired
     CommentService commentService;
 
-    @PostMapping("/{id}")
+    @PostMapping("/{userId}")
     public ResponseEntity<Boolean> createComment(@RequestParam(name = "commentDto") CommentDto commentDto,
-                                                 @PathVariable(name = "id") Long id){
+                                                 @PathVariable(name = "userId") Long userId){
         return ResponseEntity.ok(
-                commentService.createComment(commentDto, id)
+                commentService.createComment(commentDto, userId)
         );
     }
 

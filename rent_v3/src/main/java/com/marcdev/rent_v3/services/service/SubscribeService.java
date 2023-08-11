@@ -44,7 +44,7 @@ public class SubscribeService implements SubscribeServiceInterface {
     }
 
     @Override
-    public Long getSub() {
-        return subscribeRepository.count();
+    public Iterable<Subscribe> getSub() {
+        return subscribeRepository.findAll();
     }
 }

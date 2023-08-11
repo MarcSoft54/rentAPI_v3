@@ -32,6 +32,7 @@ public class CommentService implements CommentServiceInterface {
             var comments = Comment.builder()
                     .content(commentDto.getContent())
                     .createAt(Timestamp.valueOf(LocalDateTime.now()))
+                    .createBy(user.get().getId())
                     .user(userRepository.getReferenceById(id))
                     .article(articleRepository.getReferenceById(id))
                     .build();

@@ -26,16 +26,16 @@ public class RankingService implements RankingServiceInterface {
 
 
     @Override
-    public boolean createLikeAndDislike(Long id, RankingDto rankingDto) {
-        Optional<User> user = userRepository.findById(id);
-        Optional<Article> article = articleRepository.findById(id);
+    public boolean createLikeAndDislike(Long userId ,Long articleId, RankingDto rankingDto) {
+        Optional<User> user = userRepository.findById(userId);
+        Optional<Article> article = articleRepository.findById(articleId);
         if(user.isPresent() && article.isPresent()){
                 var rank = Ranking.builder()
                         .dislike(rankingDto.getDislike())
                         .likes(rankingDto.getLikes())
-                        .id(new Ranking.UserArticleKey(user.get().getId(), article.get().getId()) )
-                        .user(userRepository.getReferenceById(id))
-                        .article(articleRepository.getReferenceById(id))
+                        .id(new Ranking.UserArticleKey(user.get().getId(), article.get().getId()))
+                        .user(userRepository.getReferenceById(userId))
+                        .article(articleRepository.getReferenceById(articleId))
                         .build();
                 rankingRepository.save(rank);
             return  true;
@@ -44,11 +44,11 @@ public class RankingService implements RankingServiceInterface {
     }
 
     @Override
-    public String deleteLikeAndDislike(Long id) {
-        var user = userRepository.findById(id);
-        var article = articleRepository.findById(id);
+    public String deleteLikeAndDislike(Long userId, Long articleId) {
+        var user = userRepository.findById(userId);
+        var article = articleRepository.findById(articleId);
         if (user.isPresent() && article.isPresent()){
-            rankingRepository.deleteById(id);
+            rankingRepository.deleteById(new Ranking.UserArticleKey(userId,articleId).getArticleId());
             return "success";
         }
         return "false";

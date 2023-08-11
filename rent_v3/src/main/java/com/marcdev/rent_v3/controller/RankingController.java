@@ -15,24 +15,26 @@ public class RankingController {
 
     @Autowired
     RankingService rankingService;
-    @PostMapping("/{id}")
-    public ResponseEntity<Boolean> createLikeAndDislike(@PathVariable(name = "id") Long id,
-                                                        @RequestParam(name = "rankingDto") RankingDto rankingDto){
+    @PostMapping("/{userId}/{articleId}")
+    public ResponseEntity<Boolean> createLikeAndDislike(@PathVariable(name = "userId") Long userId,
+                                                        @PathVariable("articleId") Long articleId,
+                                                        @RequestBody RankingDto rankingDto){
         return ResponseEntity.ok(
-                rankingService.createLikeAndDislike(id,rankingDto)
+                rankingService.createLikeAndDislike(userId, articleId,rankingDto)
         );
     }
-    @DeleteMapping("/del/{id}")
-    public ResponseEntity<String> delLikeAndDislike(@RequestParam(name = "id") Long id){
+    @DeleteMapping("/{userId}/{articleId}")
+    public ResponseEntity<String> delLikeAndDislike(@PathVariable("userId") Long userId,
+                                                    @PathVariable("articleId") Long articleId){
         return ResponseEntity.ok(
-                rankingService.deleteLikeAndDislike(id)
+                rankingService.deleteLikeAndDislike(userId, articleId)
         );
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<List<Ranking>> getLikes(@PathVariable(name = "id") int id){
+    @GetMapping("/{articleId}")
+    public ResponseEntity<List<Ranking>> getLikes(@PathVariable(name = "articleId") Long articleId){
         return ResponseEntity.ok(
-                rankingService.getRanking((long) id)
+                rankingService.getRanking(articleId)
         );
     }
 

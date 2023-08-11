@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RankingDto {
-    Long likes;
-    Long dislike;
+    int likes;
+    int dislike;
 }

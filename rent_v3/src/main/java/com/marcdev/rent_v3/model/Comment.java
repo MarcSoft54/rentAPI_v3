@@ -28,6 +28,7 @@ public class Comment {
 
     @Column(columnDefinition = "TEXT")
     String content;
+    Long createBy;
 
     Timestamp createAt;
 

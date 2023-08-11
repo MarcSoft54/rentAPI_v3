@@ -8,9 +8,9 @@ import java.util.Optional;
 
 public interface RankingServiceInterface{
 
-    boolean createLikeAndDislike(Long id, RankingDto rankingDto);
+    boolean createLikeAndDislike(Long userId ,Long articleId, RankingDto rankingDto);
 
-    String deleteLikeAndDislike(Long id);
+    String deleteLikeAndDislike(Long userId, Long articleId);
 
     List<Ranking> getRanking(Long id);
 

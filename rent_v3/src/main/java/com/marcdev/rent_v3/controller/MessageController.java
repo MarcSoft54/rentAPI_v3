@@ -15,16 +15,16 @@ public class MessageController {
 
     @Autowired
     MessageService messageService;
-    @PostMapping("/{id}")
-    public ResponseEntity<String> createMessage(@RequestParam(name = "messageDto") MessageDto messageDto,
-                                                @PathVariable(name = "id") Long id){
+    @PostMapping("/{userId}")
+    public ResponseEntity<String> createMessage(@RequestBody MessageDto messageDto,
+                                                @PathVariable(name = "userId") Long id){
         return ResponseEntity.ok(
                 messageService.createMessage(messageDto, id)
         );
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<List<Message>> getMesasges(@PathVariable(name = "id") Long id){
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<Message>> getMesasges(@PathVariable(name = "userId") Long id){
         return ResponseEntity.ok(
                 messageService.getMessage(id)
         );

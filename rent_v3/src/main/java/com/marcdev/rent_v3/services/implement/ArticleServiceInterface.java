@@ -13,7 +13,9 @@ public interface ArticleServiceInterface {
 
     public String updateArticle(ArticleDto articleDto, Long id, Long userId);
 
-    Optional<ArticleDto> searchArticle(String keyWord, double price);
+    Optional<Iterable<Article>> searchArticleByName(String keyWord);
+
+    Optional<Iterable<Article>> searchArticleByPrice(double price);
 
     Iterable<Article> getArticle();
 }

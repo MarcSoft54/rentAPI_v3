@@ -16,38 +16,45 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/{userDto}")
+    @PostMapping("/users")
     public ResponseEntity<String> createUser(@RequestBody UserDto userDto){
         return ResponseEntity.ok(
                 userService.createUser(userDto)
         );
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/users/{id}")
     public ResponseEntity<String> delUser(@PathVariable("id") Long id){
         return ResponseEntity.ok(
                 userService.deleteUser(id)
         );
     }
 
-    @PutMapping("/{userDto}")
+    @PutMapping("/users")
     public ResponseEntity<String> updateUser(@RequestBody UserDto userDto){
         return ResponseEntity.ok(
                 userService.updateUser(userDto)
         );
     }
 
-    @GetMapping("/")
+    @GetMapping("/users")
     public ResponseEntity<Iterable<User>> getUsers(){
         return ResponseEntity.ok(
                 userService.getUser()
         );
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<Optional<Iterable<User>>> search(@PathVariable(name = "name") String name){
+    @GetMapping("/users/{name}")
+    public ResponseEntity<Optional<Iterable<User>>> search(@PathVariable("name") String name){
         return ResponseEntity.ok(
                 userService.seachUser(name)
+        );
+    }
+
+    @GetMapping("/users/{id}")
+    public ResponseEntity<Optional<User>> getOneUserById(@PathVariable("id") Long id){
+        return ResponseEntity.ok(
+          userService.getUserBy(id)
         );
     }
 

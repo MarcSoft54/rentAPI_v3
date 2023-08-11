@@ -15,7 +15,6 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @Entity(name = "subscribe")
 @Table(schema = "rent")
-@JsonIgnoreProperties(value = {"user"})
 public class Subscribe {
 
     @Id
@@ -28,6 +27,12 @@ public class Subscribe {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties(
+            value = {
+                    "userName", "surName", "email", "passWord", "sex",
+                    "phoneNumber", "country", "role", "createAccountAt"
+            }
+    )
     User user;
 
     public Subscribe(Long numberSubscribe) {

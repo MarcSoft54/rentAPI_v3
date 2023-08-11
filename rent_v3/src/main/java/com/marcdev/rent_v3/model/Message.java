@@ -37,6 +37,5 @@ public class Message {
     Long createBy;
 
     public Message(String content) {
-
     }
 }

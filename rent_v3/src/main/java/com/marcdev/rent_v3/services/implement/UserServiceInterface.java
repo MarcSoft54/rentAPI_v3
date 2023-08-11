@@ -16,4 +16,6 @@ public interface UserServiceInterface {
    Optional<Iterable<User>> seachUser(String email);
 
    Iterable<User> getUser();
+
+   Optional<User> getUserBy(Long id);
 }

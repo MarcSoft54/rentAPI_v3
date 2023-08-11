@@ -8,14 +8,11 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 @SpringBootApplication
 @OpenAPIDefinition(
@@ -67,12 +64,12 @@ public class RentV3Application implements CommandLineRunner {
 		);
 
 		SubscribeDto subscribe = new SubscribeDto(
-				21L
+				1L
 		);
 
 		RankingDto ranking = new RankingDto(
-				1L,
-				1L
+				 1,
+				 0
 		);
 
 		UserDto user = new UserDto(
@@ -82,6 +79,15 @@ public class RentV3Application implements CommandLineRunner {
 				"marc",
 				"male",
 				657284175,
+				"Cameroun"
+		);
+		UserDto user1 = new UserDto(
+				"marc b",
+				"dev",
+				"marcdev1@dev.com",
+				"marc",
+				"male",
+				647284175,
 				"Cameroun"
 		);
 
@@ -107,11 +113,12 @@ public class RentV3Application implements CommandLineRunner {
 
 		Long id = 1L;
 
-		userService.createUser(user);
+
+		userService.createUser(user);userService.createUser(user1);
 		articleService.createArticle(article, id);
 		commentService.createComment(comment, id);
-		rankingService.createLikeAndDislike(id,ranking);
+		rankingService.createLikeAndDislike(id,id,ranking);
 		messageService.createMessage(message, id);
-		subscribeService.createSubscribe(id, 0L);
+		subscribeService.createSubscribe(id, 1L);
 	}
 }

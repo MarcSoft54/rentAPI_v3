@@ -26,9 +26,9 @@ public class Ranking {
     UserArticleKey id;
 
     @Column
-    Long likes;
+    int likes;
     @Column
-    Long dislike;
+    int dislike;
 
     @ManyToOne
     @MapsId("userId")
@@ -40,7 +40,7 @@ public class Ranking {
     @JoinColumn(name = "article_id")
     Article article;
 
-    public Ranking(Long likes, Long dislike) {
+    public Ranking(int likes, int dislike) {
 
     }
 
