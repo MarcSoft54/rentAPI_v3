@@ -38,8 +38,7 @@ class MessageControllerTest {
 
 
     MessageDto messageDto = new MessageDto(
-            "same prayer",
-            Timestamp.valueOf(LocalDateTime.now())
+            "same prayer"
     );
     @Test
     void createMessage() throws Exception{

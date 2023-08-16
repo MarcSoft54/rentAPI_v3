@@ -58,8 +58,8 @@ public class UserService implements UserServiceInterface {
     }
 
     @Override
-    public String updateUser(UserDto userDto) {
-        Optional<User> user = userRepository.findByEmail(userDto.getUserName());
+    public String updateUser(UserDto userDto, Long id) {
+        Optional<User> user = userRepository.findById(id);
         if (user.isPresent()){
             user.get().setUserName(userDto.getUserName());
             user.get().setSurName(userDto.getSurName());

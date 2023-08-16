@@ -11,7 +11,7 @@ public interface UserServiceInterface {
 
    public String deleteUser(Long id);
 
-   public String updateUser(UserDto userDto);
+   public String updateUser(UserDto userDto, Long id);
 
    Optional<Iterable<User>> seachUser(String email);
 

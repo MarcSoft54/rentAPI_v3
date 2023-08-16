@@ -17,12 +17,12 @@ public class ArticleController {
     ArticleService articleService;
 
 
-    @PostMapping("/articles/{userId}")
+    @PostMapping("/articles")
     public ResponseEntity<String> createArticles(@RequestBody ArticleDto articleDto,
-                                                 @PathVariable(name = "userId") Long id)
+                                                 @RequestParam Long userId)
     {
         return ResponseEntity.ok(
-                articleService.createArticle(articleDto, id)
+                articleService.createArticle(articleDto, userId)
         );
     }
 
@@ -33,10 +33,10 @@ public class ArticleController {
         );
     }
 
-    @PutMapping("/articles/{id}/{userId}")
+    @PutMapping("/articles/{id}")
     public ResponseEntity<String> updateArticle(@RequestBody ArticleDto articleDto,
                                                 @PathVariable(name = "id") int id,
-                                                @PathVariable(name = "userId") int userId){
+                                                @RequestParam int userId){
         return ResponseEntity.ok(
                 articleService.updateArticle(articleDto, (long) id, (long) userId)
         );
@@ -44,7 +44,7 @@ public class ArticleController {
 
     @GetMapping("/articles/search")
     public ResponseEntity<Optional<Iterable<Article>>> searchArticleByName(@RequestParam(required = false, defaultValue = "") String kw,
-                                                                           @RequestParam(defaultValue = "35000") double price){
+                                                                           @RequestParam(defaultValue = "300") double price){
         if (kw.isEmpty()){
             return ResponseEntity.ok(
                     articleService.searchArticleByPrice(price)

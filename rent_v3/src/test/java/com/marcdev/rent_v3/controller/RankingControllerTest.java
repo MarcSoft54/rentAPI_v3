@@ -33,8 +33,8 @@ class RankingControllerTest {
     CommentService commentService;
 
     RankingDto ranking = new RankingDto(
-      1L,
-      0L
+      1,
+      0
     );
     @Test
     void createLikeAndDislike() throws Exception{
