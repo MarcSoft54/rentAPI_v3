@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,7 +15,7 @@ public class ArticleDto {
     double priceArticle;
     String city;
     String mapUrl;
-    String pictureUrl;
+    List<String> pictureUrl;
     String videoUrl;
     String description;
     int room;

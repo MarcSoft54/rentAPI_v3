@@ -18,7 +18,7 @@ import java.util.Set;
 @Table(schema = "rent")
 @JsonIgnoreProperties(
         value = {
-                "comment", "ranking","article","subscribe","messages"
+                "comment", "ranking","article","subscribe","messages","passWord"
         }
 )
 public class User {

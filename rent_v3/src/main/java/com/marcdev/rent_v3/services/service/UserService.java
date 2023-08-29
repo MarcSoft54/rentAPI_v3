@@ -27,7 +27,7 @@ public class UserService implements UserServiceInterface {
 
     @Override
     public String createUser(UserDto userDto) {
-        Optional<User> user = userRepository.findByEmail(userDto.getEmail());
+        Optional<User> user = userRepository.findByEmailAndPhoneNumber(userDto.getEmail(),userDto.getPhoneNumber() );
         if(user.isPresent()){
             return "isPresent";
         }else {

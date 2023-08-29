@@ -23,6 +23,8 @@ public class ArticleMapper {
         );
     }
 
+
+
     public ArticleDto toDto(Article article){
         return new ArticleDto(
                 article.getTypeArticle(),

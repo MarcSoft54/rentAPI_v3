@@ -35,21 +35,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 				description = "\n\n\nmade by Marc William",
 				url = "http:#"
 		)
-
 )
 public class RentV3Application implements CommandLineRunner {
-	@Autowired
-	UserService userService;
-	@Autowired
-	RankingService rankingService;
-	@Autowired
-	ArticleService articleService;
-	@Autowired
-	SubscribeService subscribeService;
-	@Autowired
-	MessageService messageService;
-	@Autowired
-	CommentService commentService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(RentV3Application.class, args);
@@ -57,68 +44,5 @@ public class RentV3Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
-
-		MessageDto message = new MessageDto(
-				"hello world"
-		);
-
-		SubscribeDto subscribe = new SubscribeDto(
-				1L
-		);
-
-		RankingDto ranking = new RankingDto(
-				 1,
-				 0
-		);
-
-		UserDto user = new UserDto(
-				"marc",
-				"dev",
-				"marcdev@dev.com",
-				"marc",
-				"male",
-				657284175,
-				"Cameroun"
-		);
-		UserDto user1 = new UserDto(
-				"marc b",
-				"dev",
-				"marcdev1@dev.com",
-				"marc",
-				"male",
-				647284175,
-				"Cameroun"
-		);
-
-		ArticleDto article = new ArticleDto(
-				"Classique",
-				"Cameroun",
-				28000,
-				"bafoussam",
-				"http://localhost:200/marcDev",
-				"http://localhost:200/pictureUrl",
-				"http://localhost:200/videoUrl",
-				"Home that's not fare from the root",
-				2,
-				4,
-				1,
-				5,
-				1
-		);
-
-		CommentDto comment = new CommentDto(
-				"marc dev"
-		);
-
-		Long id = 1L;
-
-
-		userService.createUser(user);userService.createUser(user1);
-		articleService.createArticle(article, id);
-		commentService.createComment(comment, id);
-		rankingService.createLikeAndDislike(id,id,ranking);
-		messageService.createMessage(message, id);
-		subscribeService.createSubscribe(id, 1L);
 	}
 }

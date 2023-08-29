@@ -1,5 +1,6 @@
 package com.marcdev.rent_v3.modelDTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

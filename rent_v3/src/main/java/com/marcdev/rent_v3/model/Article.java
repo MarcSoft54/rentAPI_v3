@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -38,7 +39,7 @@ public class Article {
     @Column(columnDefinition = "TEXT")
     String mapUrl;
     @Column(nullable = false, columnDefinition = "TEXT")
-    String pictureUrl;
+    List<String> pictureUrl;
     @Column(nullable = false, columnDefinition = "TEXT")
     String videoUrl;
 
@@ -74,7 +75,7 @@ public class Article {
                    double priceArticle,
                    String city,
                    String mapUrl,
-                   String pictureUrl,
+                   List<String> pictureUrl,
                    String videoUrl,
                    String description,
                    int room,
