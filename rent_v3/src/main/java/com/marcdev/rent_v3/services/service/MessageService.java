@@ -29,6 +29,7 @@ public class MessageService implements MessageServiceInterface {
                     .createBy(user.get().getId())
                     .user(userRepository.getReferenceById(id))
                     .createAt(Timestamp.valueOf(LocalDateTime.now()))
+                    .createTo(messageDto.getCreateTo())
                     .build();
             messageRepository.save(message);
             return "success";

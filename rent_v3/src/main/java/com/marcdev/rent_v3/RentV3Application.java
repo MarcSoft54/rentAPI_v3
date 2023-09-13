@@ -1,14 +1,10 @@
 package com.marcdev.rent_v3;
 
-import com.marcdev.rent_v3.model.Comment;
-import com.marcdev.rent_v3.modelDTO.*;
-import com.marcdev.rent_v3.services.service.*;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

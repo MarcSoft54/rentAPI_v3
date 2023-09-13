@@ -1,7 +1,9 @@
 package com.marcdev.rent_v3.services.implement;
 
 import com.marcdev.rent_v3.model.User;
+import com.marcdev.rent_v3.model.UserLogin;
 import com.marcdev.rent_v3.modelDTO.UserDto;
+import com.marcdev.rent_v3.modelDTO.LoginPayloadDto;
 
 import java.util.Optional;
 
@@ -18,4 +20,7 @@ public interface UserServiceInterface {
    Iterable<User> getUser();
 
    Optional<User> getUserBy(Long id);
+
+   UserLogin getLogin(LoginPayloadDto loginDto);
+
 }

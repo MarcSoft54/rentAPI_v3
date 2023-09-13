@@ -7,13 +7,15 @@ public class MessageMapper {
 
     public MessageDto toDto(Message message){
         return new MessageDto(
-                message.getContent()
+                message.getContent(),
+                message.getCreateTo()
         );
     }
 
     public Message toMessage(MessageDto messageDto){
         return new Message(
-                messageDto.getContent()
+                messageDto.getContent(),
+                messageDto.getCreateTo()
         );
     }
 

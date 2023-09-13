@@ -1,5 +1,6 @@
 package com.marcdev.rent_v3.services.service;
 
+import com.marcdev.rent_v3.mapperModel.ArticleMapper;
 import com.marcdev.rent_v3.model.Article;
 import com.marcdev.rent_v3.model.User;
 import com.marcdev.rent_v3.modelDTO.ArticleDto;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Optional;
+
 @Service
 public class ArticleService implements ArticleServiceInterface {
 

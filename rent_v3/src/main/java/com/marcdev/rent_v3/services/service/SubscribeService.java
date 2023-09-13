@@ -44,7 +44,7 @@ public class SubscribeService implements SubscribeServiceInterface {
     }
 
     @Override
-    public Iterable<Subscribe> getSub() {
-        return subscribeRepository.findAll();
+    public Optional<Subscribe> getSub(Long id) {
+        return subscribeRepository.findById(id);
     }
 }

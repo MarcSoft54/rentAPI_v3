@@ -8,7 +8,7 @@ public class UserMapper {
     public UserDto toDto(User user){
         return new UserDto(
                 user.getUserName(),
-                user.getSurName(),
+                user.getUserPicture(),
                 user.getEmail(),
                 user.getPassWord(),
                 user.getSex(),
@@ -20,7 +20,7 @@ public class UserMapper {
     public User toUser(UserDto userDto){
         return new User(
                 userDto.getUserName(),
-                userDto.getSurName(),
+                userDto.getUserPicture(),
                 userDto.getEmail(),
                 userDto.getPassWord(),
                 userDto.getSex(),

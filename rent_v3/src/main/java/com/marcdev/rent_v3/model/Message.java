@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Data
 @Entity(name = "message")
@@ -28,7 +29,7 @@ public class Message {
 
     String content;
 
-    Timestamp createAt;
+    Date createAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -36,6 +37,8 @@ public class Message {
 
     Long createBy;
 
-    public Message(String content) {
+    Long createTo;
+
+    public Message(String content, Long createTo) {
     }
 }

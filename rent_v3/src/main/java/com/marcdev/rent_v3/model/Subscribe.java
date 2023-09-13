@@ -22,7 +22,6 @@ public class Subscribe {
     Long id;
 
     Timestamp createAt;
-
     Long numberSubscribe;
 
     @ManyToOne

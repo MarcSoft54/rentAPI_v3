@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api")
 public class SubscribeController {
@@ -27,10 +29,10 @@ public class SubscribeController {
         );
     }
 
-    @GetMapping("subscribers/")
-    public ResponseEntity<Iterable<Subscribe>> getSub(){
+    @GetMapping("subscribers/{userId}")
+    public ResponseEntity<Optional<Subscribe>> getSub(@PathVariable(name = "userId") Long id){
         return ResponseEntity.ok(
-                subscribeService.getSub()
+                subscribeService.getSub(id)
         );
     }
 }

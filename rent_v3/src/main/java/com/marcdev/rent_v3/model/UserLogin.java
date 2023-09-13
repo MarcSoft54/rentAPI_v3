@@ -1,16 +1,14 @@
-package com.marcdev.rent_v3.modelDTO;
+package com.marcdev.rent_v3.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
-
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MessageDto {
-    String content;
-    Long createTo;
+@Builder
+public class UserLogin {
+    Long id;
 }

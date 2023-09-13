@@ -30,7 +30,7 @@ public class User {
     @Column(nullable = false, columnDefinition = "TEXT")
     String userName;
     @Column(nullable = false, columnDefinition = "TEXT")
-    String surName;
+    String userPicture;
     @Column(nullable = false, columnDefinition = "TEXT", unique = true)
     String email;
     @Column(nullable = false, columnDefinition = "TEXT")
@@ -39,7 +39,7 @@ public class User {
     String sex;
 
     @Column(nullable = false, unique = true)
-    int phoneNumber;
+    Long phoneNumber;
 
     String country;
 
@@ -82,11 +82,11 @@ public class User {
     Set<Message> messages;
 
     public User(String userName,
-                String surName,
+                String userPicture,
                 String email,
                 String passWord,
                 String sex,
-                int phoneNumber,
+                Long phoneNumber,
                 String country) {
 
     }
