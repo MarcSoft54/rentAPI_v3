@@ -3,9 +3,9 @@ package com.marcdev.rent_v3.controller;
 import com.marcdev.rent_v3.configuration.AuthService;
 import com.marcdev.rent_v3.model.User;
 import com.marcdev.rent_v3.model.UserLogin;
-import com.marcdev.rent_v3.modelDTO.LoginResponseDto;
+import com.marcdev.rent_v3.configuration.LoginResponseDto;
 import com.marcdev.rent_v3.modelDTO.UserDto;
-import com.marcdev.rent_v3.modelDTO.LoginPayloadDto;
+import com.marcdev.rent_v3.configuration.LoginPayloadDto;
 import com.marcdev.rent_v3.services.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -53,17 +53,17 @@ public class UserController {
 
 
 
-//    @GetMapping("/users/{name}")
-//    public ResponseEntity<Optional<Iterable<User>>> search(@RequestParam("name") String name){
+//    @GetMapping("/users")
+//    public ResponseEntity<Optional<Iterable<User>>> search(@RequestParam String name){
 //        return ResponseEntity.ok(
 //                userService.seachUser(name)
 //        );
 //    }
 
     @PostMapping("/users/auth/login")
-    public ResponseEntity<String> authenticate (@RequestBody LoginPayloadDto loginPayloadDto){
-        return  ResponseEntity.ok(
-               "ok"
+    public ResponseEntity<LoginResponseDto> authenticate (@RequestBody LoginPayloadDto loginPayloadDto){
+        return ResponseEntity.ok(
+                authService.Login(loginPayloadDto)
         );
     }
 
@@ -71,6 +71,7 @@ public class UserController {
 
     @GetMapping("/users/")
     public ResponseEntity<LoginResponseDto> getCurrentUser(){
+        responseDto.setUsername("marc");
         return ResponseEntity.ok(
                 responseDto
         );

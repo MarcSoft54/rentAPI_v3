@@ -3,7 +3,9 @@ package com.marcdev.rent_v3.services.implement;
 import com.marcdev.rent_v3.model.User;
 import com.marcdev.rent_v3.model.UserLogin;
 import com.marcdev.rent_v3.modelDTO.UserDto;
-import com.marcdev.rent_v3.modelDTO.LoginPayloadDto;
+import com.marcdev.rent_v3.configuration.LoginPayloadDto;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.Optional;
 

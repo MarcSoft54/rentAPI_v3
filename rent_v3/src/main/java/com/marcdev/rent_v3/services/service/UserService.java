@@ -2,10 +2,11 @@ package com.marcdev.rent_v3.services.service;
 
 import com.marcdev.rent_v3.model.*;
 import com.marcdev.rent_v3.modelDTO.UserDto;
-import com.marcdev.rent_v3.modelDTO.LoginPayloadDto;
+import com.marcdev.rent_v3.configuration.LoginPayloadDto;
 import com.marcdev.rent_v3.repository.UserRepository;
 import com.marcdev.rent_v3.services.implement.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -14,10 +15,11 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class UserService implements UserServiceInterface {
+public class UserService implements UserServiceInterface{
 
     @Autowired
     private UserRepository userRepository;
+
 
     @Override
     public String createUser(UserDto userDto) {
@@ -33,7 +35,7 @@ public class UserService implements UserServiceInterface {
                     .phoneNumber(userDto.getPhoneNumber())
                     .country(userDto.getCountry())
                     .sex(userDto.getSex())
-                    .role(Role.ADMIN)
+                    .role("ADMIN")
                     .createAccountAt(Timestamp.valueOf(LocalDateTime.now()))
                     .build();
             userRepository.save(users);
@@ -94,6 +96,8 @@ public class UserService implements UserServiceInterface {
         }
         return null;
     }
+
+
 
 
 }

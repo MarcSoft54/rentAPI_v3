@@ -43,7 +43,7 @@ public class User {
 
     String country;
 
-    Role role;
+    String role;
 
     Timestamp createAccountAt;
 
