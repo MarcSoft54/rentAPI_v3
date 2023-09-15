@@ -1,12 +1,15 @@
 package com.marcdev.rent_v3.controller;
 
 import com.marcdev.rent_v3.configuration.AuthService;
+import com.marcdev.rent_v3.handlerException.CustomException;
+import com.marcdev.rent_v3.handlerException.CustomMessage;
 import com.marcdev.rent_v3.model.User;
 import com.marcdev.rent_v3.model.UserLogin;
 import com.marcdev.rent_v3.configuration.LoginResponseDto;
 import com.marcdev.rent_v3.modelDTO.UserDto;
 import com.marcdev.rent_v3.configuration.LoginPayloadDto;
 import com.marcdev.rent_v3.services.service.UserService;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -73,14 +76,12 @@ public class UserController {
         );
     }
 
-
     @GetMapping("/users/{id}")
     public ResponseEntity<Optional<User>> getOneUserById(@PathVariable("id") Long id){
         return ResponseEntity.ok(
                 userService.getUserBy(id)
         );
     }
-
 
     @Autowired
     LoginPayloadDto loginPayloadDto;
@@ -90,7 +91,6 @@ public class UserController {
                                             @RequestParam("password") String password){
         loginPayloadDto.setEmail(email);
         loginPayloadDto.setPassword(password);
-
         return ResponseEntity.ok(
                 userService.getLogin(loginPayloadDto)
         );

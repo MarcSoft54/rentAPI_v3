@@ -47,7 +47,8 @@ public class ArticleController {
     }
 
     @GetMapping("/articles/search")
-    public ResponseEntity<Optional<Iterable<Article>>> searchArticleByName(@RequestParam(required = false, defaultValue = "") String kw, @RequestParam(defaultValue = "300") double price){
+    public ResponseEntity<Optional<Iterable<Article>>> searchArticleByName(@RequestParam(required = false, defaultValue = "") String kw,
+                                                                           @RequestParam(defaultValue = "300") double price){
         if (kw.isEmpty()){
             return ResponseEntity.ok(
                     articleService.searchArticleByPrice(price)
@@ -61,7 +62,7 @@ public class ArticleController {
 
 
     @GetMapping("/articles")
-    public ResponseEntity<Iterable<Article>> getArticles(AccessDeniedException deniedException){
+    public ResponseEntity<Iterable<Article>> getArticles(){
         return ResponseEntity.ok(
                 articleService.getArticle()
         );
