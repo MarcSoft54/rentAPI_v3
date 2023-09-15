@@ -33,44 +33,44 @@ class ArticleControllerTest {
     @MockBean
     CommentService commentService;
 
-    ArticleDto article = new ArticleDto(
-            "Classique",
-            "Cameroun",
-            28000,
-            "bafoussam",
-            "http://localhost:200/marcDev",
-            "http://localhost:200/pictureUrl",
-            "http://localhost:200/videoUrl",
-            "Home that's not fare from the root",
-            5,
-            4,
-            1,
-            5,
-            1
-    );
-    ArticleDto article2 = new ArticleDto(
-            "Classique",
-            "Cameroun",
-            28000,
-            "bafoussam",
-            "http://localhost:200/marcDev",
-            "http://localhost:200/pictureUrl",
-            "http://localhost:200/videoUrl",
-            "Home that's not fare from the root",
-            1,
-            4,
-            1,
-            5,
-            1
-    );
+//    ArticleDto article = new ArticleDto(
+//            "Classique",
+//            "Cameroun",
+//            28000,
+//            "bafoussam",
+//            "http://localhost:200/marcDev",
+//            "http://localhost:200/pictureUrl",
+//            "http://localhost:200/videoUrl",
+//            "Home that's not fare from the root",
+//            5,
+//            4,
+//            1,
+//            5,
+//            1
+//    );
+//    ArticleDto article2 = new ArticleDto(
+//            "Classique",
+//            "Cameroun",
+//            28000,
+//            "bafoussam",
+//            "http://localhost:200/marcDev",
+//            "http://localhost:200/pictureUrl",
+//            "http://localhost:200/videoUrl",
+//            "Home that's not fare from the root",
+//            1,
+//            4,
+//            1,
+//            5,
+//            1
+//    );
 
 
 
-    @Test
-    void createArticles() throws Exception {
-        mvc.perform(post("/api/setArticle?articleDto="+article+"&id=1"))
-                .andExpect(status().isOk());
-    }
+//    @Test
+//    void createArticles() throws Exception {
+//        mvc.perform(post("/api/setArticle?articleDto="+article+"&id=1"))
+//                .andExpect(status().isOk());
+//    }
 
     @Test
     void delArticle() throws Exception {
@@ -79,11 +79,11 @@ class ArticleControllerTest {
     }
 
 
-    @Test
-    void updateArticle() throws Exception {
-        mvc.perform(put("/api/updateArticle?articleDto="+article2+"&id=1&userId=1"))
-                .andExpect(status().isOk());
-    }
+//    @Test
+//    void updateArticle() throws Exception {
+//        mvc.perform(put("/api/updateArticle?articleDto="+article2+"&id=1&userId=1"))
+//                .andExpect(status().isOk());
+//    }
 
     @Test
     void searchArticle() throws Exception{

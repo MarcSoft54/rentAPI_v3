@@ -1,4 +1,4 @@
-package com.marcdev.rent_v3.model;
+package com.marcdev.rent_v3.handlerException;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ErrorMessage extends RuntimeException{
+@Builder
+public class CustomMessage{
     String status;
     String message;
     String debugMessage;

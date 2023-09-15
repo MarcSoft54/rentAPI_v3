@@ -9,6 +9,7 @@ import com.marcdev.rent_v3.configuration.LoginPayloadDto;
 import com.marcdev.rent_v3.services.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -23,25 +24,20 @@ public class UserController {
     AuthService authService;
 
     @PostMapping("/users")
-    public ResponseEntity<String> createUser(@RequestBody UserDto userDto){
-        return ResponseEntity.ok(
-                userService.createUser(userDto)
-        );
+    public String createUser(@RequestBody UserDto userDto){
+        return  userService.createUser(userDto);
     }
 
     @DeleteMapping("/users/{id}")
-    public ResponseEntity<String> delUser(@PathVariable("id") Long id){
-        return ResponseEntity.ok(
-                userService.deleteUser(id)
-        );
+    @PreAuthorize("hasRole('Role_ADMIN')")
+    public String delUser(@PathVariable("id") Long id){
+        return userService.deleteUser(id);
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<String> updateUser(@RequestBody UserDto userDto,
-                                             @PathVariable("id") Long id){
-        return ResponseEntity.ok(
-                userService.updateUser(userDto, id)
-        );
+    public String updateUser(@RequestBody UserDto userDto,
+                             @PathVariable("id") Long id){
+        return  userService.updateUser(userDto, id);
     }
 
     @GetMapping("/users")

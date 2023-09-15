@@ -4,6 +4,7 @@ import com.marcdev.rent_v3.model.Article;
 import com.marcdev.rent_v3.modelDTO.ArticleDto;
 import com.marcdev.rent_v3.services.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,30 +23,27 @@ public class ArticleController {
 
     @PostMapping("/articles")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<String> createArticles(@RequestBody ArticleDto articleDto,
-                                                 @RequestParam Long userId)
+    public String createArticles(@RequestBody ArticleDto articleDto,
+                                 @RequestParam Long userId)
     {
-        return ResponseEntity.ok(
-                articleService.createArticle(articleDto, userId)
-        );
+        return   articleService.createArticle(articleDto, userId);
     }
 
     @DeleteMapping("/articles/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<String> delArticle(@PathVariable("id") Long id){
-        return ResponseEntity.ok(
-                articleService.deleteArticle(id)
-        );
+    public String delArticle(@PathVariable("id") Long id,
+                             @RequestParam Long userId){
+
+        return  articleService.deleteArticle(id, userId);
+
     }
 
     @PutMapping("/articles/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<String> updateArticle(@RequestBody ArticleDto articleDto,
-                                                @PathVariable(name = "id") int id,
-                                                @RequestParam int userId){
-        return ResponseEntity.ok(
-                articleService.updateArticle(articleDto, (long) id, (long) userId)
-        );
+    public String updateArticle(@RequestBody ArticleDto articleDto,
+                                @PathVariable(name = "id") int id,
+                                @RequestParam int userId){
+        return  articleService.updateArticle(articleDto, (long) id, (long) userId);
     }
 
     @GetMapping("/articles/search")

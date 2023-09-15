@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -54,11 +55,16 @@ public class ArticleService implements ArticleServiceInterface {
     }
 
     @Override
-    public String deleteArticle(Long id) {
+    public String deleteArticle(Long id, Long userId) {
         Optional<Article> article = articleRepository.findById(id);
+        Optional<User> user = userRepository.findById(userId);
         if (article.isPresent()){
-            articleRepository.deleteById(article.get().getId());
-            return "ok";
+            if (user.isPresent()){
+                if (Objects.equals(article.get().getUser().getId(), user.get().getId())){
+                    articleRepository.deleteById(article.get().getId());
+                    return "ok";
+                }
+            }
         }
         return "Not Found";
     }

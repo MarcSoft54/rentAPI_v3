@@ -42,9 +42,9 @@ public class SecurityConfig {
         return http.csrf(crsf-> crsf.disable())
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize->authorize
-                        .requestMatchers(HttpMethod.GET,"/api/articles/**","/api/comments/**", "/api/rankings/**"
+                        .requestMatchers(HttpMethod.GET,"/api/articles/**","/api/comments/**", "/api/rankings/**", "/api/articles"
                         ).permitAll()
-                        .requestMatchers(HttpMethod.POST,"/api/articles/**", "/api/comments/**", "/api/subscribers/**", "/api/users/auth/login", "/api/users"
+                        .requestMatchers(HttpMethod.POST, "/api/users/auth/login", "/api/users"
                         ).permitAll()
                         .requestMatchers(HttpMethod.PUT,"/api/articles/**", "/api/users/**").hasAuthority("ADMIN")
                         .requestMatchers( HttpMethod.DELETE,"/api/articles/**", "/api/rankings/**", "/api/subscribers/**","/api/users/**").hasAuthority("ADMIN")

@@ -1,5 +1,8 @@
 package com.marcdev.rent_v3.configuration;
 
+import com.marcdev.rent_v3.handlerException.CustomException;
+import com.marcdev.rent_v3.handlerException.CustomMessage;
+import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,14 +26,14 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         String authHeader = request.getHeader("Authorization");
         String token = null;
         String username = null;
         if (authHeader != null && authHeader.startsWith("Bearer")) {
-            token = authHeader.substring(7);
+                token = authHeader.substring(7);
+                username = jwtService.extractUsername(token);
 
-            username = jwtService.extractUsername(token);
         }
 
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {

@@ -9,7 +9,7 @@ public interface ArticleServiceInterface {
 
     public String createArticle(ArticleDto articleDto, Long id);
 
-    public String deleteArticle(Long id);
+    public String deleteArticle(Long id, Long userId);
 
     public String updateArticle(ArticleDto articleDto, Long id, Long userId);
 
