@@ -27,18 +27,16 @@ public class AuthService implements UserDetailsService {
         if (user.isPresent()){
             if (Objects.equals(user.get().getPassWord(), payloadDto.getPassword())){
                 String token = jwtService.generateToken(user.get().getEmail());
-                var login = LoginResponseDto.builder()
+                return LoginResponseDto.builder()
                         .username(user.get().getUserName())
                         .accessToken(token)
                         .build();
-                return login;
             }
         }
-        var lok = LoginResponseDto.builder()
+        return LoginResponseDto.builder()
                 .accessToken("Empty")
                 .username("User not found")
                 .build();
-        return lok;
     }
 
     @Override
