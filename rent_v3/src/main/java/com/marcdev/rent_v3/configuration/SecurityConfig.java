@@ -1,6 +1,5 @@
 package com.marcdev.rent_v3.configuration;
 
-import com.marcdev.rent_v3.services.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity
 @EnableWebSecurity
 @Configuration
-public class SecurityConfig {
+public class SecurityConfig  {
 
     @Autowired
     private JwtAuthFilter jwtAuthFilter;
@@ -46,8 +45,8 @@ public class SecurityConfig {
                         ).permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/users/auth/login", "/api/users"
                         ).permitAll()
-                        .requestMatchers(HttpMethod.PUT,"/api/articles/**", "/api/users/**").hasAuthority("ADMIN")
-                        .requestMatchers( HttpMethod.DELETE,"/api/articles/**", "/api/rankings/**", "/api/subscribers/**","/api/users/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT).hasAuthority("ADMIN")
+                        .requestMatchers( HttpMethod.DELETE).hasAuthority("ADMIN")
                         .anyRequest().authenticated())
                 .exceptionHandling(exception->exception.authenticationEntryPoint(((request, response, authException) ->
                         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "UNAUTHORIZED")))

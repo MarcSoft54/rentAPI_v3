@@ -35,7 +35,7 @@ public class AuthService implements UserDetailsService {
         }
         return LoginResponseDto.builder()
                 .accessToken("Empty")
-                .username("User not found")
+                .username(payloadDto.getEmail() +" not found " )
                 .build();
     }
 

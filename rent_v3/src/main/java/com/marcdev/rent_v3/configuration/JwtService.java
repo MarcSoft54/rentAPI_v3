@@ -30,12 +30,12 @@ public class JwtService {
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 5 * 60))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
     }
-    private Key getSignKey(){
+    public Key getSignKey(){
         byte[] keyBytes = Decoders.BASE64.decode(SECRET);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public   String extractUsername(String token){
+    public String extractUsername(String token){
         return extractClaim(token, Claims::getSubject);
     }
     public Date extractExpiration(String token){

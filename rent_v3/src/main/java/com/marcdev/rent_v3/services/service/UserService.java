@@ -6,6 +6,7 @@ import com.marcdev.rent_v3.configuration.LoginPayloadDto;
 import com.marcdev.rent_v3.repository.UserRepository;
 import com.marcdev.rent_v3.services.implement.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -97,7 +98,11 @@ public class UserService implements UserServiceInterface{
         return null;
     }
 
-
-
+//public void userException(){
+//    User user = userRepository.saveAndFlush(new User());
+//    if(user == null){
+//        throw new UserServiceException("Failed to persist user", HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
+//}
 
 }

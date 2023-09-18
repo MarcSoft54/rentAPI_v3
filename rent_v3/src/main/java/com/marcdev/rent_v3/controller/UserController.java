@@ -1,15 +1,12 @@
 package com.marcdev.rent_v3.controller;
 
 import com.marcdev.rent_v3.configuration.AuthService;
-import com.marcdev.rent_v3.handlerException.CustomException;
-import com.marcdev.rent_v3.handlerException.CustomMessage;
 import com.marcdev.rent_v3.model.User;
 import com.marcdev.rent_v3.model.UserLogin;
 import com.marcdev.rent_v3.configuration.LoginResponseDto;
 import com.marcdev.rent_v3.modelDTO.UserDto;
 import com.marcdev.rent_v3.configuration.LoginPayloadDto;
 import com.marcdev.rent_v3.services.service.UserService;
-import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

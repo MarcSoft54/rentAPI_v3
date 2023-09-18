@@ -1,6 +1,6 @@
 package com.marcdev.rent_v3.configuration;
 
-import com.marcdev.rent_v3.handlerException.CustomException;
+import com.marcdev.rent_v3.handlerException.ExceptionManager;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import java.io.IOException;
 
@@ -23,6 +24,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     @Autowired
     AuthService authService;
 
+    @Autowired
+    ExceptionManager manager;
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
@@ -30,9 +34,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String token = null;
         String username = null;
         if (authHeader != null && authHeader.startsWith("Bearer")) {
+            try {
                 token = authHeader.substring(7);
                 username = jwtService.extractUsername(token);
-
+            }catch (ExpiredJwtException e){
+                manager.expiredJwtToken(e);
+                System.out.println(manager.expiredJwtToken(e).toString());
+            }
         }
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = authService.loadUserByUsername(username);
