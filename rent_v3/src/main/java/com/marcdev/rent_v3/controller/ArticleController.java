@@ -63,7 +63,7 @@ public class ArticleController {
 
 
     @GetMapping("/articles")
-    public ResponseEntity<Iterable<Article>> getArticles(AccessDeniedException deniedException){
+    public ResponseEntity<Iterable<Article>> getArticles(){
         return ResponseEntity.ok(
                 articleService.getArticle()
         );
