@@ -24,7 +24,7 @@ public class AuthService implements UserDetailsService {
         Optional<User> user = userRepository.findByUserNameOrEmail(payloadDto.getEmail(), payloadDto.getEmail());
         if (user.isPresent()){
             if (Objects.equals(user.get().getPassWord(), payloadDto.getPassword())){
-                String token = jwtService.generateToken(user.get().getEmail());
+                String token = jwtService.generateToken(user.get().getUserName());
                 var login = LoginResponseDto.builder()
                         .username(user.get().getUserName())
                         .accessToken(token)
