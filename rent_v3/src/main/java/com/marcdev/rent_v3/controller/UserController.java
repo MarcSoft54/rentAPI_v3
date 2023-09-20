@@ -69,7 +69,7 @@ public class UserController {
     @GetMapping("/users/authorities")
     public String authorities(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getName();
+        return authentication.getAuthorities().toString();
     }
 
 //    @GetMapping("/users")
