@@ -4,6 +4,7 @@ import com.marcdev.rent_v3.model.Subscribe;
 import com.marcdev.rent_v3.services.service.SubscribeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -15,6 +16,7 @@ public class SubscribeController {
     @Autowired
     SubscribeService subscribeService;
     @PostMapping("/subscribers/{userId}/{b}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Boolean> createSub(@PathVariable(name = "userId") Long id,
                                              @PathVariable(name = "b") int b){
         return ResponseEntity.ok(
@@ -23,6 +25,7 @@ public class SubscribeController {
     }
 
     @DeleteMapping("/subscribers/{userId}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> delSub(@PathVariable(name = "userId") Long id){
         return ResponseEntity.ok(
                 subscribeService.deleteSubscribe(id)

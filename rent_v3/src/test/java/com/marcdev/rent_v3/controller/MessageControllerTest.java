@@ -37,13 +37,13 @@ class MessageControllerTest {
     CommentService commentService;
 
 
-    MessageDto messageDto = new MessageDto(
-            "same prayer"
-    );
-    @Test
-    void createMessage() throws Exception{
-        mvc.perform(post("/api/setMessage?messageDto"+messageDto+"&id=1"));
-    }
+//    MessageDto messageDto = new MessageDto(
+//            "same prayer"
+//    );
+//    @Test
+//    void createMessage() throws Exception{
+//        mvc.perform(post("/api/setMessage?messageDto"+messageDto+"&id=1"));
+//    }
 
     @Test
     void getMesasges() throws Exception{

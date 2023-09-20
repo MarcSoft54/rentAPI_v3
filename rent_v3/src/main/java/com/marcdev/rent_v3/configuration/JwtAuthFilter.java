@@ -26,7 +26,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     @Autowired
     ExceptionManager manager;
 
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authHeader = request.getHeader("Authorization");
@@ -44,6 +43,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = authService.loadUserByUsername(username);
+
+//                System.out.println("jwtAuthFilter : "+userDetails.getAuthorities() + userDetails.getUsername() + userDetails.getPassword());
                 if (jwtService.validateToken(token, userDetails)) {
                     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                     authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

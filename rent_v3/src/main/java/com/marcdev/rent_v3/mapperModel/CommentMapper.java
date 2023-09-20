@@ -13,6 +13,7 @@ public class CommentMapper {
 
     public CommentDto toDto(Comment comment){
         return new CommentDto(
+                comment.getId(),
                 comment.getContent()
         );
     }

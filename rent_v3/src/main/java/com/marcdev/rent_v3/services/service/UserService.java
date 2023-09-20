@@ -35,7 +35,7 @@ public class UserService implements UserServiceInterface{
                     .phoneNumber(userDto.getPhoneNumber())
                     .country(userDto.getCountry())
                     .sex(userDto.getSex())
-                    .role("ADMIN")
+                    .role("ROLE_ADMIN")
                     .createAccountAt(Timestamp.valueOf(LocalDateTime.now()))
                     .build();
             userRepository.save(users);

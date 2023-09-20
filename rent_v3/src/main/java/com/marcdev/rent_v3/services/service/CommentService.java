@@ -28,13 +28,14 @@ public class CommentService implements CommentServiceInterface {
     @Override
     public boolean createComment(CommentDto commentDto, Long id) {
         Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()){
+        Optional<Article> article = articleRepository.findById(commentDto.getArticleId());
+        if (user.isPresent() && article.isPresent()){
             var comments = Comment.builder()
                     .content(commentDto.getContent())
                     .createAt(Timestamp.valueOf(LocalDateTime.now()))
                     .createBy(user.get().getId())
                     .user(userRepository.getReferenceById(id))
-                    .article(articleRepository.getReferenceById(id))
+                    .article(articleRepository.getReferenceById(article.get().getId()))
                     .build();
             commentRepository.save(comments);
             return true;

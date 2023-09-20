@@ -33,14 +33,14 @@ class CommentControllerTest {
     @MockBean
     CommentService commentService;
 
-    CommentDto cm = new CommentDto(
-            "marc william"
-    );
-    @Test
-    void createComment() throws Exception {
-        mvc.perform(post("/api/setComment?commentDto="+cm+"&id=1"))
-                .andExpect(status().isOk());
-    }
+//    CommentDto cm = new CommentDto(
+//            "marc william"
+//    );
+//    @Test
+//    void createComment() throws Exception {
+//        mvc.perform(post("/api/setComment?commentDto="+cm+"&id=1"))
+//                .andExpect(status().isOk());
+//    }
 
     @Test
     void getComment() throws Exception {

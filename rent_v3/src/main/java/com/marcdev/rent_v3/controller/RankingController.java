@@ -5,6 +5,7 @@ import com.marcdev.rent_v3.modelDTO.RankingDto;
 import com.marcdev.rent_v3.services.service.RankingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class RankingController {
     @Autowired
     RankingService rankingService;
     @PostMapping("/{userId}/{articleId}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Boolean> createLikeAndDislike(@PathVariable(name = "userId") Long userId,
                                                         @PathVariable("articleId") Long articleId,
                                                         @RequestBody RankingDto rankingDto){
@@ -24,6 +26,7 @@ public class RankingController {
         );
     }
     @DeleteMapping("/{userId}/{articleId}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> delLikeAndDislike(@PathVariable("userId") Long userId,
                                                     @PathVariable("articleId") Long articleId){
         return ResponseEntity.ok(

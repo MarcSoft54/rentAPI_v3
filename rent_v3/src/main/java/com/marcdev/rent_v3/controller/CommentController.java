@@ -5,6 +5,7 @@ import com.marcdev.rent_v3.modelDTO.CommentDto;
 import com.marcdev.rent_v3.services.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,6 +16,7 @@ public class CommentController {
     CommentService commentService;
 
     @PostMapping("/{userId}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Boolean> createComment(@RequestParam(name = "commentDto") CommentDto commentDto,
                                                  @PathVariable(name = "userId") Long userId){
         return ResponseEntity.ok(

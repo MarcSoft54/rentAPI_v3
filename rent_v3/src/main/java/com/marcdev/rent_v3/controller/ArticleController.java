@@ -5,7 +5,6 @@ import com.marcdev.rent_v3.modelDTO.ArticleDto;
 import com.marcdev.rent_v3.services.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,7 +59,6 @@ public class ArticleController {
             );
         }
     }
-
 
     @GetMapping("/articles")
     public ResponseEntity<Iterable<Article>> getArticles(){
