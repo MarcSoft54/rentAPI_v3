@@ -1,17 +1,15 @@
 package com.marcdev.rent_v3.controller;
 
 import com.marcdev.rent_v3.configuration.AuthService;
-import com.marcdev.rent_v3.configuration.SecurityConfig;
 import com.marcdev.rent_v3.model.User;
-import com.marcdev.rent_v3.model.UserLogin;
 import com.marcdev.rent_v3.configuration.LoginResponseDto;
 import com.marcdev.rent_v3.modelDTO.UserDto;
 import com.marcdev.rent_v3.configuration.LoginPayloadDto;
+import com.marcdev.rent_v3.repository.UserRepository;
 import com.marcdev.rent_v3.services.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -66,10 +64,22 @@ public class UserController {
         );
     }
 
-    @GetMapping("/users/authorities")
-    public String authorities(){
+//    @GetMapping("/users/authorities")
+//    public String authorities(){
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        return authentication.getAuthorities().toString();
+//    }
+
+    @Autowired
+    UserRepository userRepository;
+
+    @GetMapping("/users/")
+    public ResponseEntity<Optional<User>> currentUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getAuthorities().toString();
+        String name = authentication.getName();
+        return  ResponseEntity.ok(
+              userRepository.findByUserName(name)
+        );
     }
 
 //    @GetMapping("/users")

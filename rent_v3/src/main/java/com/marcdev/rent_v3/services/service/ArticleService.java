@@ -9,9 +9,12 @@ import com.marcdev.rent_v3.repository.UserRepository;
 import com.marcdev.rent_v3.services.implement.ArticleServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Files;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,6 +29,7 @@ public class ArticleService implements ArticleServiceInterface {
     @Override
     public String createArticle(ArticleDto articleDto, Long id) {
         Optional<User> user = userRepository.findById(id);
+
         if (user.isPresent()){
             var article = Article.builder()
                     .typeArticle(articleDto.getTypeArticle())
