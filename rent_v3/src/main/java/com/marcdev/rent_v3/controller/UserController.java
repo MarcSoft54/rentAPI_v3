@@ -45,12 +45,12 @@ public class UserController {
         );
     }
 
-    @GetMapping("/users/{name}")
-    public ResponseEntity<Optional<Iterable<User>>> search(@PathVariable("name") String name){
-        return ResponseEntity.ok(
-                userService.seachUser(name)
-        );
-    }
+//    @GetMapping("/users/{name}")
+//    public ResponseEntity<Optional<Iterable<User>>> search(@PathVariable("name") String name){
+//        return ResponseEntity.ok(
+//                userService.seachUser(name)
+//        );
+//    }
 
     @GetMapping("/users/{id}")
     public ResponseEntity<Optional<User>> getOneUserById(@PathVariable("id") Long id){

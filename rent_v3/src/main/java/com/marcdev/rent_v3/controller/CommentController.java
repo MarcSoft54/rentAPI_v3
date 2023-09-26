@@ -14,9 +14,9 @@ public class CommentController {
     @Autowired
     CommentService commentService;
 
-    @PostMapping("/{userId}")
-    public ResponseEntity<Boolean> createComment(@RequestParam(name = "commentDto") CommentDto commentDto,
-                                                 @PathVariable(name = "userId") Long userId){
+    @PostMapping("/")
+    public ResponseEntity<Boolean> createComment(@RequestBody CommentDto commentDto,
+                                                 @RequestParam(name = "userId") Long userId){
         return ResponseEntity.ok(
                 commentService.createComment(commentDto, userId)
         );

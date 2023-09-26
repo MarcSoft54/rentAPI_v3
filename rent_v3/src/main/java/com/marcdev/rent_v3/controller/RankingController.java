@@ -15,9 +15,9 @@ public class RankingController {
 
     @Autowired
     RankingService rankingService;
-    @PostMapping("/{userId}/{articleId}")
-    public ResponseEntity<Boolean> createLikeAndDislike(@PathVariable(name = "userId") Long userId,
-                                                        @PathVariable("articleId") Long articleId,
+    @PostMapping("/")
+    public ResponseEntity<Boolean> createLikeAndDislike(@RequestParam("userId") Long userId,
+                                                        @RequestParam("articleId") Long articleId,
                                                         @RequestBody RankingDto rankingDto){
         return ResponseEntity.ok(
                 rankingService.createLikeAndDislike(userId, articleId,rankingDto)
