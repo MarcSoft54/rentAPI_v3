@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class ExceptionManager {
+public class ExceptionManager extends Exception {
 
     @ExceptionHandler(ExpiredJwtException.class)
     public String tokenExpired(ExpiredJwtException exception){

@@ -3,6 +3,7 @@ package com.marcdev.rent_v3.services.implement;
 import com.marcdev.rent_v3.model.Article;
 import com.marcdev.rent_v3.modelDTO.ArticleDto;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ArticleServiceInterface {

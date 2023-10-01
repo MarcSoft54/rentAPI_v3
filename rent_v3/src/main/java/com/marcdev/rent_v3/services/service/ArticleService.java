@@ -7,6 +7,7 @@ import com.marcdev.rent_v3.modelDTO.ArticleDto;
 import com.marcdev.rent_v3.repository.ArticleRepository;
 import com.marcdev.rent_v3.repository.UserRepository;
 import com.marcdev.rent_v3.services.implement.ArticleServiceInterface;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,7 +30,6 @@ public class ArticleService implements ArticleServiceInterface {
     @Override
     public String createArticle(ArticleDto articleDto, Long id) {
         Optional<User> user = userRepository.findById(id);
-
         if (user.isPresent()){
             var article = Article.builder()
                     .typeArticle(articleDto.getTypeArticle())
@@ -47,8 +47,8 @@ public class ArticleService implements ArticleServiceInterface {
                     .mapUrl(articleDto.getMapUrl())
                     .createAt(Timestamp.valueOf(LocalDateTime.now()))
                     .lastModifyAt(Timestamp.valueOf(LocalDateTime.now()))
-                    .createBy(userRepository.findById(id).get().getId())
-                    .lastModifyBy(userRepository.findById(id).get().getId())
+                    .createBy(userRepository.findById(id).orElseThrow().getId())
+                    .lastModifyBy(userRepository.findById(id).orElseThrow().getId())
                     .user(userRepository.getReferenceById(id))
                     .build();
             articleRepository.save(article);
@@ -104,4 +104,5 @@ public class ArticleService implements ArticleServiceInterface {
     public Iterable<Article> getArticle() {
         return articleRepository.findAll();
     }
+
 }

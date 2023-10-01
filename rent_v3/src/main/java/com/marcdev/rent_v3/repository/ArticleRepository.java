@@ -12,5 +12,4 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     Optional<Iterable<Article>> findByPriceArticleGreaterThan(double price);
 
-    void deleteByUserId(Long id);
 }

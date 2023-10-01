@@ -40,7 +40,7 @@ public class Article {
     String mapUrl;
     @Column(nullable = false, columnDefinition = "TEXT")
     List<String> pictureUrl;
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     String videoUrl;
 
     @Column(nullable = false, columnDefinition = "TEXT")
@@ -63,7 +63,8 @@ public class Article {
     User user;
 
     @OneToMany(mappedBy = "article",
-            cascade = CascadeType.ALL
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
     ) // manyToMany
     Set<Ranking> ranking;
 
