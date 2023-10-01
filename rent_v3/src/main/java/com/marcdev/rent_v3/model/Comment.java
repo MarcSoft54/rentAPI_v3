@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "comment")
-@Table(schema = "rent")
+@Table
 @JsonIgnoreProperties(
         value = {
                 "user", "article"

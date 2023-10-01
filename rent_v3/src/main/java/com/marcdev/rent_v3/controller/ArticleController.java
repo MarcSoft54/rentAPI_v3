@@ -4,7 +4,9 @@ import com.marcdev.rent_v3.model.Article;
 import com.marcdev.rent_v3.modelDTO.ArticleDto;
 import com.marcdev.rent_v3.repository.ArticleRepository;
 import com.marcdev.rent_v3.services.service.ArticleService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -65,7 +67,10 @@ public class ArticleController {
     }
 
     @GetMapping("/articles")
+    @Transactional
+    @Modifying(clearAutomatically = true)
     public List<Article> getAll(){
+        System.out.println(articleService.getArticle().toString());
         return articleRepository.findAll();
     }
 

@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "subscribe")
-@Table(schema = "rent")
+@Table
 public class Subscribe {
 
     @Id

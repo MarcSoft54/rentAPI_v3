@@ -14,7 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "ranking")
-@Table(schema = "rent")
+@Table
 @JsonIgnoreProperties(
         value = {
                 "user", "article"

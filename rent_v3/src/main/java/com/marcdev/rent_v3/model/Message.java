@@ -15,7 +15,7 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(schema = "rent")
+@Table
 @JsonIgnoreProperties(
         value = {
                 "user"

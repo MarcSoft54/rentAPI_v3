@@ -15,7 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "users")
-@Table(schema = "rent")
+@Table
 @JsonIgnoreProperties(
         value = {
                 "comment", "ranking","article","subscribe","messages","passWord"
